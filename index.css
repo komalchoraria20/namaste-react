@@ -1,3 +1,20 @@
-#container {
-    background-color: brown;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid brown;
+    padding: 2px;
+}
+
+.logo {
+    width: 50px;
+}
+
+.user-icon {
+    width: 32px;
+}
+
+.search {
+    height: 24px;
+    width: 300px;
 }
