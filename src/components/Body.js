@@ -1,19 +1,38 @@
-import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useState, useEffect, useReducer } from "react";
+import Shimmer from "./Shimmer";
 
 function filterData(searchText, restaurants) {
   return restaurants.filter((restaurant) =>
-    restaurant.data.name.includes(searchText)
+    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
 }
 
 const Body = () => {
-  const [restaurants, setRestaurants] = useState(restaurantList);
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
-  return (
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.6245947&lng=88.4397262&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    console.log(json);
+    setRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+  }
+  console.log("render");
+
+  if (!restaurants) return null;
+
+  return restaurants?.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-container">
         <input
@@ -36,12 +55,16 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-list">
-        {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard
-            {...restaurant.data}
-            key={restaurant.data.id}
-          />
-        ))}
+        {filteredRestaurants?.length === 0 ? (
+          <h1>No Restaurant match your filter!!</h1>
+        ) : (
+          filteredRestaurants.map((restaurant) => (
+            <RestaurantCard
+              {...restaurant.data}
+              key={restaurant.data.id}
+            />
+          ))
+        )}
       </div>
     </>
   );

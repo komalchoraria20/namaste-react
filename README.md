@@ -1,22 +1,75 @@
-# LET'S GET HOOKED!
+# EXPLORING THE WORLD!
 
-**1. What is the difference between Named Export, Default Export and \* as Export?**
+**1. What is a Microservice?**
 
-Named exports are useful to export several values. During the import, one will be able to use the same name to refer to the corresponding value. While importing, the name is written in curly braces.
+Microservices are an architectural and organizational approach to software development where software is composed of small independent services that communicate over well-defined APIs. These services are owned by small, self contained teams.
 
-In Default Export, there is only a single default export per module. A default export can be a function, a class, an object or anything else.
-The default exports tend to be used for whatever we normally expect to get from the module. During import, we can put any name; it will still provide with the same default export.
+**2. What is Monolith architecture?**
 
-\*as Export means exporting everything from that page, except the default export.
+A monolith architecture is a traditional model of a software program, which is built as a unified unit that is self contained and independent from other applications.
 
-**2. What is the importance of config.js file?**
+**3. What is the difference between monolith and microservice?**
 
-Config.js file is required to store the hard coded data which will be helpful for our other files and is imported as per use.
+A monolith architecture is built as a single unified event while a microservice architecture is a collection of smaller, independently deployable services.
 
-**3. What are React Hooks?**
+**4. Why do we need a useEffect hook?**
 
-React Hooks are simple JavaScript functions that we can use to isolate the reusable part from a functional component.
+useEffect hook allows us to perform side-effects in our components.Some egs. of side-effects are fetching data, directly updating the DOM and timers.
+The useEffect hook allows components to react to lifecycle events such as mounting to the DOM, re-rendering and unmounting.
+useEffect accepts two arguments - callback function and dependency array.
 
-**4. Why do we need a useState hook?**
+**5. What is optional chaining?**
 
-When we have to create a local variable in React, we need to use state variables using useState hook. useState creates the state value and setter of that state.It accepts a default value and returns an array of two elements, where the first element is the state itself and the second element is the setter function of that state.
+This operator access an object’s property or calls a function.If the object accessed or function called is undefined or null, it returns undefined instead of throwing an error.
+It is represented as ?.
+
+**6. What is Shimmer UI?**
+
+Shimmer is a temporary animation placeholder for when data from the service call takes time to get back and we don’t want to block rendering the rest of the UI.
+
+**7. What is the difference between JS expression and JS statement?**
+
+An expression is any valid unit of code that resolves to a value whereas a statement is a unit of code that performs an action.
+
+eg.-JavaScript expression
+
+`add(a + b);`
+
+JavaScript Statement
+
+```
+Let x = 10;
+console.log(x);
+```
+
+**8. What is Conditional Rendering? Explain with a code eg.**
+
+Conditional Rendering is a term used to describe the ability to render different user interface markup if a condition is true or false.
+In React, it allows us to render different elements or components based on a condition.
+This concept is applied often in the following scenarios:-
+
+1. Rendering external data from an API.
+2. Showing or hiding elements.
+3. Toggling application functionality.
+4. Implementing permission levels.
+5. Handling authentication and authorization.
+
+Eg: Conditional rendering for login and logout.
+
+The login and logout buttons will be separate components. If a user is logged in, render the logout component to display the logout button.
+If a user is not logged in, render the login component to display the login button.
+In React, this situation is called conditional rendering.
+
+**9. What is CORS?**
+
+Cross Origin Resource Sharing is a HTTP header based mechanism that allows a server to indicate any origins(domain, scheme or port) other than its own from which a browser should permit loading resources.
+CORS also relies on a mechanism by which browser make a “preflight” request to the server hosting the cross-origin resource, in order to check that server will permit the actual request.
+
+**10. What is async and await?**
+
+Async makes a function return a Promise.
+Await makes a function wait for a Promise.
+
+**11. What is the use of const json = await data.json(); in getRestaurants?**
+
+It converts the stream data to JavaScript object and wait till it is converted and then assign the final value to the variable.
