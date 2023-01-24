@@ -1,31 +1,59 @@
-# FINDING THE PATH!
+# LET's GET CLASSY!
 
-**1. How can we add images into our App? Explain with code examples.?**
+**1. How do you create Nested Routes react-router-dom configuration?**
 
-1. By importing the image from the path.
+We do nesting by creating children of children.
+Eg: If we want a create a Profile page inside the About page,
 
-Import pic from “./images/mypic.jpg”;
+```
+const appRouter = createBrowserRouter([{
+    path: “/”,
+    element: <App Layout />,
+    children: [{
+        path: “/about",
+        element: <About />,
+        children: [{
+            path: “profile”
+            element: <Profile />,
+        }]
+    }]
+}]);
+```
 
-    `<img src={pic} />`
+**2. What is the order of life cycle method calls in Class Based Components?**
 
-2. By directly accessing the Image CDN URL.
+1.Constructor
+2.Render
+3.DOM is updated
+4.componentDidMount
+5.componentDidUpdate
+6.componentWillUnmount
 
-`<img src={IMG_CDN_URL} />`
+1 & 2 comes under Render phase, and then Commit phase follows.
 
-**2. What would happen if we do console.log(useState())?**
+**3. Why do we use componentDidMount?**
 
-It will return an array of two elements.First one is the state and second is the setter of that state.
+It is the best place to make an API call because it renders first and updates later.
 
-**3. How will useEffect() behave, if we don’t add a dependency array?**
+**4. Why do we use componentWillUnmount? Show with eg.**
 
-If we don’t pass any dependency array, the useEffect() will be called on every render.
+It will be called just before the component is unmounted.
 
-**4. What is SPA?**
+Eg: When we leave the page, or switch one page to another we need to clear things up.Since its a single page application, it has some cons.
 
-A single page application is a web app implementation that loads only a single web document, and then updates the body content of that single document via JavaScript APIs such as XMLHttpRequest and Fetch when different content is to be shown.
+```
+componentDidMount() {
+    this.setInterval(() => {
+        console.log(“Namaste React”),
+    }, 1000);
+}
+```
 
-**5. What is the difference between Client Side and Server Side Routing?**
+So, when we do setInterval and switch pages, it is called everytime.
+To avoid this, we use componentWillUnmount to clear this interval.
 
-Client side routing allows our app to update the URL from a link click without making another request for another document from the server. It won’t make a network call as it loads the components that are already present in our app.
-
-Server side routing is the way where all our pages come from the server.
+```
+componentWillUnmount () {
+	clearInterval(this.timer)
+}
+```
