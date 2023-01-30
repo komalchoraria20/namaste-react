@@ -1,59 +1,33 @@
-# LET's GET CLASSY!
+# OPTIMIZING OUR APP!
 
-**1. How do you create Nested Routes react-router-dom configuration?**
+**1. When and why do we need lazy()?**
 
-We do nesting by creating children of children.
-Eg: If we want a create a Profile page inside the About page,
+Lazy Loading allows us to load JavaScript components when a specific route is activated.
+It increases the application's performance by reducing initial loading time.
 
-```
-const appRouter = createBrowserRouter([{
-    path: “/”,
-    element: <App Layout />,
-    children: [{
-        path: “/about",
-        element: <About />,
-        children: [{
-            path: “profile”
-            element: <Profile />,
-        }]
-    }]
-}]);
-```
+Benefits-
 
-**2. What is the order of life cycle method calls in Class Based Components?**
+1. Reduces initial load time - Lazy loading a web page reduces page weight, allowing for a quicker page load time.
+2. Bandwidth conservation - Lazy loading conserves bandwidth by delivering content to users only if it's requested.
 
-1.Constructor
-2.Render
-3.DOM is updated
-4.componentDidMount
-5.componentDidUpdate
-6.componentWillUnmount
+**2. What is suspense?**
 
-1 & 2 comes under Render phase, and then Commit phase follows.
+Its a component that lets you wait for some code to load.
+While the lazy component loads, we can add a fallback(probably show some placeholder content, such as loading indication.)to suspense.
 
-**3. Why do we use componentDidMount?**
+**3.Why we got this error : A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition.How does suspense fix this error?**
 
-It is the best place to make an API call because it renders first and updates later.
+Suspense is a component used to surround lazy components.
+It is fixed by wrapping the lazy component with suspense.
 
-**4. Why do we use componentWillUnmount? Show with eg.**
+**4. Advantages and disadvantages of using code splitting pattern?**
 
-It will be called just before the component is unmounted.
+Code splitting is a feature supported by bundlers like Parcel, Webpack etc.which can create multiple bundles that can be dynamically loaded at runtime.
 
-Eg: When we leave the page, or switch one page to another we need to clear things up.Since its a single page application, it has some cons.
+Advantages:-
+Enhanced performance
+Reduces app loading time
+Reduces initial bundle size
 
-```
-componentDidMount() {
-    this.setInterval(() => {
-        console.log(“Namaste React”),
-    }, 1000);
-}
-```
-
-So, when we do setInterval and switch pages, it is called everytime.
-To avoid this, we use componentWillUnmount to clear this interval.
-
-```
-componentWillUnmount () {
-	clearInterval(this.timer)
-}
-```
+Disadvantges:-
+We can only use it in client-side rendering,not for server side.
