@@ -1,33 +1,128 @@
-# OPTIMIZING OUR APP!
+# JO DIKHTA HAI VO BIKTA HAI!
 
-**1. When and why do we need lazy()?**
+**1. What are the different ways to write css?**
 
-Lazy Loading allows us to load JavaScript components when a specific route is activated.
-It increases the application's performance by reducing initial loading time.
+1. Basic Native CSS
 
-Benefits-
+   We style everything in one large CSS file
+   eg: -
 
-1. Reduces initial load time - Lazy loading a web page reduces page weight, allowing for a quicker page load time.
-2. Bandwidth conservation - Lazy loading conserves bandwidth by delivering content to users only if it's requested.
+```
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+```
 
-**2. What is suspense?**
+2. SCSS/ SASS
 
-Its a component that lets you wait for some code to load.
-While the lazy component loads, we can add a fallback(probably show some placeholder content, such as loading indication.)to suspense.
+   Its a modern way of writing CSS.
+   Makes CSS writing experience good.
+   Its compiled to CSS at the end of the day.
 
-**3.Why we got this error : A component suspended while responding to synchronous input. This will cause the UI to be replaced with a loading indicator. To fix, updates that suspend should be wrapped with startTransition.How does suspense fix this error?**
+   Benefits-
 
-Suspense is a component used to surround lazy components.
-It is fixed by wrapping the lazy component with suspense.
+   -Nesting
+   -Reusability
+   -Variables
+   -Mixins
 
-**4. Advantages and disadvantages of using code splitting pattern?**
+3. Inline CSS
 
-Code splitting is a feature supported by bundlers like Parcel, Webpack etc.which can create multiple bundles that can be dynamically loaded at runtime.
+   Here, we pass a JavaScript object inside JSX.
 
-Advantages:-
-Enhanced performance
-Reduces app loading time
-Reduces initial bundle size
+eg:-
 
-Disadvantges:-
-We can only use it in client-side rendering,not for server side.
+```
+const searchBtnCss = {backgrundColor: "red"}
+
+<button style={searchBtnCss}></button>
+
+This can also be directly passed.
+
+<button style = {{backgroundColor: "red"}}> </button>
+```
+
+Pros:
+
+It saves time.
+Cons: Hardcoded, Repetition, Difficult to maintain, Not reusable.
+The job of processing inline CSS is heavy.
+
+4. Use of Libraries
+
+   We can use libraries like Material UI, Base UI, Ant UI, Chakra etc.
+
+Pros:
+Consistent and fast UI.
+
+Cons:
+We cannot personally customise it.
+Bundle size is big.
+
+5. Styled Components
+
+   Its majorly used in React projects.
+   Here, CSS is written in JavaScript file ans CSS is passed as props.
+
+Pros: Reusability
+
+Cons: Different learning curve.
+
+5. Tailwind CSS
+
+   Its an open source CSS framework.
+   Pros:
+
+   -CSS on the same page(in same file)
+
+   -Reusability
+
+   -Less bundle size
+
+   Flexible UI(cutomisable)
+
+**2. How do we configure tailwind?**
+
+After installin tailwindCSS, it creates a tailwind .config.js file.
+
+1.  Add the paths to all of your template files in your tailwind.config.js file.
+
+```
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+2. We need to add the tailwind directives to our css.
+   Add the tailwind directives for each of Tailwind’s layers to your main CSS file.
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+**3. In tailwind.config.js, what does all the keys mean(content,theme, plugins)?**
+
+Content section is where we will have all the files where tailwind will run.(eg:html, css, jsx etc.)
+
+Theme section is where we define our project's color palette, type scale, fonts, breakpoints, border radius etc.
+
+Plugins lets us register new styles for tailwind to inject into the user's stylesheet using JS instead of CSS.
+
+**4. Why do we have .postcssrc file?**
+
+postcssrc takes the mentioned configuration and tells the bundler(Parcel here) to compile tailwind CSS to normal CSS.
+
+```
+{
+  "plugins": {
+    "tailwindcss": {}
+  }
+}
+```
