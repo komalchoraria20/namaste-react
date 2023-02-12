@@ -12,8 +12,14 @@ const Cart = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-3xl">Cart Items - {cartItems.length}</h1>
+      <h1
+        className="font-bold text-3xl"
+        data-testid="cartHeader"
+      >
+        Cart - {cartItems.length} items
+      </h1>
       <button
+        data-testid="clearCart"
         className="bg-green-100 p-2 m-5"
         onClick={() => {
           handleClearCart();
@@ -21,7 +27,10 @@ const Cart = () => {
       >
         Clear Cart
       </button>
-      <div className="flex">
+      <div
+        className="flex"
+        data-testid="cartItems"
+      >
         {cartItems.map((item) => (
           <FoodItem
             key={item.id}

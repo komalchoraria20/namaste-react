@@ -1,39 +1,23 @@
-## LET'S BUILD OUR STORE!
+## TIME FOR THE TEST!
 
-**1. useContext vs Redux**
+**1. What are different types of testing?**
 
-useContext is a hook whereas Redux is a state management library.
-useContext is a part of React library whereas Redux is not.
-useContext requires less code, and because there is no need of extra libraries, bundle sizes are reduced. Redux on the other hand requires adding more libraries to the application bundle.
+1. Manual Testing
+2. Automated testing
+3. Unit Testing
+4. Integration Testing
 
-**2 Advantage of using Redux Toolkit over Redux.**
+**2. What is Enzyme?**
 
-1. Redux Toolkit makes it easier to write good Redux applications
-   and speeds up development.
+Enzyme is a JavaScript testing library mainly used for React unit testing.
+It's a small testing library often combined with Jest to create test cases.
 
-2. Configuring a redux store in Redux Toolkit is not complicated.
+**3. Enzyme vs React testing library**
 
-3. Redux Toolkit doesn't require lot of packages and too many boilerplate code.
+Enzyme allows you to access the internal workings of your components. You can read and set the state, and you can mock children to make tests run faster.
 
-**3. Explain dispatcher.**
+On the other hand, react-testing-library doesn't give you any access to the implementation details. It renders the components and provides utility methods to interact with them. The idea is that you should communicate with your application in the same way a user would.
 
-In react-redux, the useDispatch hook gives us access to our store's dispatch method.
-Dispatch is used to send actions into our redux store and the only way we can affect the store from within a component.
+**4. What is Jest and why do we use it?**
 
-**4. Reducer**
-
-A reducer is a function that determines changes to an application's state.It uses the action it receives to determine this change. It is the only place, where we can write logic and calculations.
-
-Reducer function will accept the previous state of app and action being dispatched, calculate the next state and returns the new object.
-
-**5. Explain slice.**
-
-A slice is the portion of Redux code that relates to a specific set of data and actions within the store's state.
-
-**6. Explain selector.**
-
-A selector is a pure function that takes a state from the Redux store and returns some information extracted from that state object.
-
-**7. Explain createSlice and the configuration it takes.**
-
-createSlice is a function that accepts an initial state, an object of reducer functions and a 'slice name', and automatically generates action creators and action types that correspond to the reducers and state.
+Jest is a JavaScript testing framework designed to ensure correctness of any JavaScript codebase. It allows you to write tests with an approachable, familiar and feature-rich API that gives you results quickly. Jest is well-documented, requires little configuration and can be extended to match your requirements.
